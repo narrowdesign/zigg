@@ -6,6 +6,12 @@ function Geometry() {
   let renderer
   let scene
   let camera
+  let controls = {
+    x: true,
+    y: true,
+    z: true,
+    r: true,
+  }
 
   let autoCounter = 0;
   let scrollCounter = 0;
@@ -19,6 +25,18 @@ function Geometry() {
 
   function init() {
     window.addEventListener('mousemove', handleMouseMove)
+    document.querySelector('.x').addEventListener('click', function() {
+      this.classList.toggle('active')
+      controls.x = !controls.x
+    })
+    document.querySelector('.y').addEventListener('click', function() {
+      this.classList.toggle('active')
+      controls.y = !controls.y
+    })
+    document.querySelector('.z').addEventListener('click', function() {
+      this.classList.toggle('active')
+      controls.z = !controls.z
+    })
     createRenderer()
     scene = new THREE.Scene()
 
@@ -101,12 +119,24 @@ function Geometry() {
     counter = scrollCounter + autoCounter;
     for (var i=0; i<scene.children.length-1;i++) {
       let cube = scene.children[i+1];
-      cube.scale.y = Scroller.scrollY/(200) * speeds[i] + (Math.sin((counter-cube.position.x-cube.position.z)/10)) + 2
+      cube.scale.y = Scroller.scrollY/(200) + (Math.sin((counter-cube.position.x-cube.position.z)/10)) + 2
       cube.scale.z = (Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1
       cube.scale.x = (Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1
-      cube.rotation.y = (Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1 + mouseX/1000
-      cube.rotation.x = (Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1
-      cube.rotation.z = (Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1 + mouseY/1000
+      if (controls.x) {
+        cube.rotation.x = (Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1
+      } else {
+        cube.rotation.x = 0;
+      }
+      if (controls.y) {
+        cube.rotation.y = (Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1 + mouseX/1000
+      } else {
+        cube.rotation.y = 0 + mouseX/1000;
+      }
+      if (controls.z) {
+        cube.rotation.z = (Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1 + mouseY/1000
+      } else {
+        cube.rotation.z = 0;
+      }
       cube.color = {r:1,g:.5,b:.5}
       if (cube.material) {
         cube.material.color = {
@@ -116,7 +146,6 @@ function Geometry() {
         }
       }
     }
-
     render()
   }
 
