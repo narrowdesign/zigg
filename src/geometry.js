@@ -3,6 +3,7 @@ import * as TWEEN from '@tweenjs/tween.js';
 import Scroller from './scroller';
 
 function Geometry() {
+  
   let renderer
   let scene
   let camera
@@ -10,13 +11,11 @@ function Geometry() {
     x: true,
     y: true,
     z: true,
-    r: true,
   }
 
   let autoCounter = 0;
   let scrollCounter = 0;
   let counter = 0;
-  let speeds = [];
   let WIN_W = window.innerWidth;
   let WIN_H = window.innerHeight;
   let mouseX = 0;
@@ -47,12 +46,11 @@ function Geometry() {
     camera.position.set(20, 20, 20)
     camera.lookAt(scene.position)
     scene.add(camera)
-
-    const numCubes = 1600;
     createLights(scene)
+    
+    const numCubes = 1600;
     for (var i=0; i < numCubes; i++) {
-      speeds.push(Math.random() + .2);
-      drawCube((i % 40) * 3, Math.floor(i / 40) * 3, 2, scene)
+      drawCube((i % 40) * 3, Math.floor(i / 40) * 3, 2, scene, i)
     }
   }
 
@@ -66,30 +64,28 @@ function Geometry() {
     document.querySelector('.container').appendChild(renderer.domElement)
   }
 
-  function drawCube(x = 0, z = 0, cubeSize = 4, scene) {
+  function drawCube(x = 0, z = 0, cubeSize = 4, scene, num) {
     let material = new THREE.MeshPhongMaterial({
-      color: 0xcc00ff
+      color: 0xcc00ff,
     })
 
-    let [width, height, depth] = [cubeSize, cubeSize, cubeSize] // w = h = d 
+    let [width, height, depth] = [cubeSize, cubeSize, cubeSize]
     let geometry = new THREE.BoxGeometry(width, height, depth)
     geometry.translate( 0, height/2, 0 );
     let cube = new THREE.Mesh(geometry, material)
     cube.position.x = x
-    cube.position.y = 0
     cube.position.z = z
-    cube.scale.z = 0;
-    cube.scale.x = 0;
+    cube.scale.y = 0
 
     let tween = new TWEEN.Tween(cube.scale)
 
     tween
-      .to({ x: 1, z: 1 }, Math.random() * 2000 + 1000)
-      .delay(Math.random() * 2000)
-      .easing(TWEEN.Easing.Quadratic.InOut)
+      .to({ y: 1 }, 1000)
+      .delay(num * 10)
+      .easing(TWEEN.Easing.Quadratic.Out)
       .start()
     
-      scene.add(cube);
+    scene.add(cube);
   }
 
   function createLights(scene) {
@@ -119,9 +115,9 @@ function Geometry() {
     counter = scrollCounter + autoCounter;
     for (var i=0; i<scene.children.length-1;i++) {
       let cube = scene.children[i+1];
-      cube.scale.y = Scroller.scrollY/(200) + (Math.sin((counter-cube.position.x-cube.position.z)/10)) + 2
-      cube.scale.z = (Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1
-      cube.scale.x = (Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1
+      cube.scale.y = (Scroller.scrollY/(200) + (Math.sin((counter-cube.position.x-cube.position.z)/10)) + 2) * Math.min(1,autoCounter/10)
+      cube.scale.z = ((Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1) * Math.min(1,autoCounter/10)
+      cube.scale.x = ((Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1) * Math.min(1,autoCounter/10)
       if (controls.x) {
         cube.rotation.x = (Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1
       } else {
@@ -165,4 +161,3 @@ function Geometry() {
 }
 
 export default Geometry;
-
