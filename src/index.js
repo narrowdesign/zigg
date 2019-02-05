@@ -3,7 +3,7 @@ import Geometry from './geometry';
 
 function App() {
   Geometry();
-  let logoPolygons = document.querySelector('.logo svg').querySelectorAll('polygon')
+  let logoPolygons = document.querySelector('.logo-container svg').querySelectorAll('polygon')
   
   for (let i = 0; i < logoPolygons.length; i++) {
     logoPolygons[i].style.opacity = 0;
