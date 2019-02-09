@@ -7,11 +7,6 @@ function Geometry() {
   let renderer
   let scene
   let camera
-  let controls = {
-    x: true,
-    y: true,
-    z: true,
-  }
   
   const colors = [
     {
@@ -42,18 +37,7 @@ function Geometry() {
 
   function init() {
     window.addEventListener('mousemove', handleMouseMove)
-    document.querySelector('.x').addEventListener('click', function() {
-      this.classList.toggle('active')
-      controls.x = !controls.x
-    })
-    document.querySelector('.y').addEventListener('click', function() {
-      this.classList.toggle('active')
-      controls.y = !controls.y
-    })
-    document.querySelector('.z').addEventListener('click', function() {
-      this.classList.toggle('active')
-      controls.z = !controls.z
-    })
+
     createRenderer()
     scene = new THREE.Scene()
 
@@ -66,43 +50,33 @@ function Geometry() {
     scene.add(camera)
     createLights(scene)
     
-    const numCubes = 400;
-    for (var i=0; i < numCubes; i++) {
-      drawCube((i % 20) * 3, Math.floor(i / 20) * 3, 2, scene, i)
-    }
+    createShapes();
   }
 
   function createRenderer() {
     renderer = new THREE.WebGLRenderer({
-      antialias: true
+      antialias: true,
+      shadowMapEnabled: true,
+      shadowMapType: THREE.PCFSoftShadowMap,
     })
-    renderer.setClearColor(0xEEEEEE)
 
     renderer.setSize(WIN_W, WIN_H)
     document.querySelector('.container').appendChild(renderer.domElement)
   }
 
-  function drawCube(x = 0, z = 0, cubeSize = 4, scene, num) {
-    let material = new THREE.MeshBasicMaterial({
-      color: 0xff6688,
+  function createShapes() {
+    let material = new THREE.MeshPhongMaterial({
+      color: 0xdf5f84,
     })
 
-    let [width, height, depth] = [cubeSize, cubeSize, cubeSize]
+    let [width, height, depth] = [30, 30, 30]
     let geometry = new THREE.BoxGeometry(width, height, depth)
     geometry.translate( 0, height/2, 0 );
     let cube = new THREE.Mesh(geometry, material)
-    cube.position.x = x
-    cube.position.z = z
-    cube.scale.y = 0
+    cube.position.x = 0
+    cube.position.z = 0
+    cube.scale.y = 1
 
-    let tween = new TWEEN.Tween(cube.scale)
-
-    tween
-      .to({ y: 1 }, 1000)
-      .delay(num * 10)
-      .easing(TWEEN.Easing.Quadratic.Out)
-      .start()
-    
     scene.add(cube);
   }
 
@@ -126,8 +100,7 @@ function Geometry() {
   }
 
   function animate() {
-    requestAnimationFrame(animate)
-    TWEEN.update()
+    requestAnimationFrame(animate);
     scrollCounter = Scroller.scrollY/6;
     autoCounter += .1;
     counter = scrollCounter + autoCounter;
@@ -138,39 +111,18 @@ function Geometry() {
     for (var i=0; i<scene.children.length-1;i++) {
       let cube = scene.children[i+1];
       let offsetX = counter-cube.position.x;
-      cube.scale.y = (Scroller.scrollY/200 + (Math.sin((offsetX-cube.position.z)/10)) + 2) * counterScaler * counterScaler2
-      cube.scale.z = ((Math.sin((offsetX-cube.position.z/3)/20)) + 1) * counterScaler * counterScaler2
-      cube.scale.x = ((Math.sin((offsetX-cube.position.z/3)/20)) + 1) * counterScaler * counterScaler2
-      // cube.material.color = colors[color]
-      // if (controls.x) {
-      //   cube.rotation.x = (Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1
-      // } else {
-      //   cube.rotation.x = 0;
-      // }
-      if (controls.y) {
-        cube.rotation.y = (Math.sin((offsetX-cube.position.z/3)/20)) + 1 + mouseX/1000
-      } else {
-        cube.rotation.y = 0 + mouseX/1000;
-      }
-      // if (controls.z) {
-      //   cube.rotation.z = (Math.sin((counter-cube.position.x-cube.position.z/3)/20)) + 1 + mouseY/1000
-      // } else {
-      //   cube.rotation.z = 0;
-      // }
+      // cube.scale.y = (Scroller.scrollY/200 + (Math.sin((offsetX-cube.position.z)/10)) + 2) * counterScaler * counterScaler2
+      // cube.scale.z = ((Math.sin((offsetX-cube.position.z/3)/20)) + 1) * counterScaler * counterScaler2
+      // cube.scale.x = ((Math.sin((offsetX-cube.position.z/3)/20)) + 1) * counterScaler * counterScaler2
       
-      // if (cube.material) {
-      //   cube.material.color = {
-      //     r: .9 + Math.random()/100 + cube.position.x/160,
-      //     g: .3 + Math.random()/100 + cube.position.x/80,
-      //     b: .6 + Math.random()/100 + cube.position.x/160,
-      //   }
-      // }
+      // cube.rotation.y = (Math.sin((offsetX-cube.position.z/3)/20)) + 1 + mouseX/1000
     }
     render()
   }
 
   function render() {
     renderer.render(scene, camera)
+
   }
 
   function handleMouseMove(e) {
