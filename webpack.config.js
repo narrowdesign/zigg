@@ -22,10 +22,10 @@ module.exports = {
           'postcss-loader'
         ]
       },
-      {
-        test: /three\/examples\/js/,
-        use: 'imports-loader?THREE=three'
-      },
+      // {
+      //   test: /three\/examples\/js/,
+      //   use: 'imports-loader?THREE=three'
+      // },
     ]
   },
 }
