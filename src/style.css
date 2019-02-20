@@ -452,9 +452,12 @@ p {
   border-top: none;
 }
 
-.contact__text {
-  flex-basis: calc(40vw - 4px);
-  padding: 5vw 10vw 0 5vw;
+.contact__email,
+.contact__icons {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .contact__number {
