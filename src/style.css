@@ -332,7 +332,7 @@ p {
 .portfolio__top {
   background: $blue-dark;
   position: relative;
-  height: flux(300px,700px);
+  height: flux(340px,750px);
   width: 100%;
   transform-origin: 0 100%;
   transform: skewX(-56.7deg);
