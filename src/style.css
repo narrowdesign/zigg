@@ -41,6 +41,8 @@ body {
   background: white;
   color: #131120;
   font-family: 'Greycliff';
+  overflow-x: hidden;
+  
 }
 
 * {
