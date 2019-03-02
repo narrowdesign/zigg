@@ -1,10 +1,10 @@
 import './style.css';
 import Geometry from './geometry';
-import Logo from './logo';
+import Scroller from './scroller';
 
 function App() {
   Geometry();
-  const logo = new Logo();
+  Scroller();
 }
 
 App();

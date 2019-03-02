@@ -4,6 +4,7 @@ $grey-dark: #cbc3c3;
 $grey-darker: #a0989c;
 $blue-dark: #000222;
 $blue-light: #343d63;
+$blue-white: #7c8197;
 
 $pink-dark: #ae4570;
 
@@ -24,7 +25,6 @@ $angle-bottom-height: calc(2.5vw + 10px);
 .blue-text {
   color: #4a519e;
 }
-
 
 body {
   padding: 0;
@@ -119,6 +119,29 @@ p {
   }
 }
 
+.menu__collapsed {
+  position: fixed;
+  left: calc(50% - 40px);
+  top: flux(25px, 72px);
+  color: $pink;
+  background: $pink-dark;
+  border-radius: 50%;
+  width: 4vw;
+  height: 4vw;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0);
+  transition: .2s ease-out;
+  cursor: pointer;
+
+  svg {
+    fill: $pink;
+    margin-top: -4px;
+  }
+}
+
 .mission {
   position: relative;
   width: 90vw;
@@ -151,6 +174,7 @@ p {
   flex-wrap: wrap;
   border-top: $border $pink-dark;
   overflow: hidden;
+  padding-bottom: 18px;
 
   @media (min-width: 900px) {
     grid-template-columns: 20vw 40vw;
@@ -261,57 +285,73 @@ p {
   grid-template-columns: 45vw 45vw;
   flex-wrap: wrap;
   border-bottom: 0;
-  overflow: hidden;
+  padding-bottom: 38px;
 
   @media (min-width: 900px) {
     grid-template-columns: 20vw 20vw 20vw;
   }
 
-  &:after,
-  &:before {
+
+  .we__shapes {
     content: '';
     position: absolute;
-    right: 0;
+    left: 0;
     top: 0;
     width: 100%;
-    height: calc(100% - $angle-bottom-height);
-    background: $grey-light;
-    z-index: -1;
-    transform-origin: 100% 0;
+    height: calc(100%);
+    transform-origin: 100% 100%;
     transform: skewY(33deg);
-    border-right: $border $grey-dark;
-    border-bottom: $border $grey-dark;
-  }
-  &:before {
-    top: auto;
-    left: auto;
-    bottom: -4px;
-    right: 0;
-    width: 150%;
-    height: $angle-bottom-height;
-    background: $grey-dark;
-    border-bottom: none;
-    transform: rotate(33deg) skewX(-33deg);
+    
+    .we__shape--middle {
+      background: $grey-light;
+      border-bottom: $border $grey-dark;
+      border-right: $border $grey-dark;
+      display: grid;
+      grid-template-rows: 20vw 20vw 20vw 20vw;
+      grid-template-columns: 20vw 20vw 20vw;
+
+      .border:first-of-type {
+        grid-row: 1 / 5;
+        grid-column: 1 / 2;
+        border-right: $border $grey-dark;
+      }
+      .border:last-of-type {
+
+        grid-row: 1 / 5;
+        grid-column: 2 / 3;
+        border-right: $border $grey-dark;
+      }
+    }
+
+    .we__shape--bottom {
+      width: 100%;
+      height: $angle-bottom-height;
+      border-bottom: none;
+      background: $grey-dark;
+      transform-origin: 0 0;
+      transform: skewX(-33deg);
+    }
   }
 }
 
 .we__title {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-basis: 20vw;
   height: 20vw;
   border-bottom: $border $grey-dark;
-  border-left: $border $grey-dark;
 }
 
 .we__text {
+  position: relative;
   flex-basis: calc(40vw - 4px);
   padding: 2.5vw;
-  border-left: $border $grey-dark;
 }
 
 .we__number {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -321,6 +361,7 @@ p {
 }
 
 .we__person {
+  position: relative;
   flex-basis: 20vw;
   text-align: center;
   display: flex;
@@ -330,7 +371,7 @@ p {
 }
 
 .we__person--dave {
-  border-left: $border $grey-dark;
+
 }
 
 .we__photo {
@@ -370,13 +411,13 @@ p {
 .portfolio__middle {
   position: relative;
   display: grid;
-  grid-template-rows: 20vw 20vw 80vw;
+  grid-template-rows: 20vw 20vw 20vw 20vw 20vw 20vw;
   grid-template-columns: 45vw 45vw;
 
   @media (min-width: 900px) {
     grid-template-columns: 20vw 20vw 20vw;
   }
-  
+
   .portfolio__shapes {
     content: '';
     position: absolute;
@@ -401,6 +442,7 @@ p {
         border-right: $border $blue-light;
       }
       .border:last-of-type {
+
         grid-row: 1 / 5;
         grid-column: 2 / 3;
         border-right: $border $blue-light;
@@ -428,15 +470,31 @@ p {
   border-top: $border $blue-light;
 }
 
-.portfolio__logos {
+.portfolio__logo {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  flex-direction: column;
+  text-align: center;
+  padding: 3vw;
+  border-top: $border $blue-light;
+  
+  p {
+    font-size: flux(14px, 18px);
+    font-weight: 300;
+    color: $blue-white;
+  }
 
   img {
-    width: 52%;
+    width: 62%;
+    height: 100px;
+    object-fit: contain;
+  }
+
+  &:nth-last-child(-n+3) {
+    border-bottom: $border $blue-light;
   }
 }
 
@@ -513,4 +571,15 @@ p {
   align-items: center;
   flex-basis: 20vw;
   color: $grey-darker;  
+}
+
+.is-menu-collapsed {
+  .menu__collapsed {
+    transform: scale(1);
+
+    &:hover {
+      transform: translateY(-2px);
+      
+    }
+  }
 }
