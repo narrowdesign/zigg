@@ -8,7 +8,7 @@ $blue-white: #7c8197;
 
 $pink-dark: #ae4570;
 
-$border: 4px solid;
+$border: flux(3px, 5px) solid;
 $border-angle: 8px solid;
 
 $angle-bottom-height: calc(2.5vw + 10px);
@@ -34,11 +34,19 @@ body {
   color: #131120;
   font-family: 'Greycliff';
   overflow-x: hidden;
-  
 }
 
 * {
   box-sizing: border-box;
+}
+
+.mission__shape--middle,
+.mission__shape--bottom,
+.we__shape--middle,
+.we__shape--bottom,
+.portfolio__shape--middle,
+.portfolio__shape--bottom {
+  box-shadow: 0 50px 100px rgba(0,0,0,.35);
 }
 
 h1 {
@@ -121,11 +129,56 @@ p {
   a {
     color: $blue-dark;
     text-decoration: none;
+    transition: .1s;
   }
+  
   span {
+    position: relative;
     font-family: 'Source Sans Pro';
     font-weight: 500;
     margin-right: flux(30px, 70px);
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: flux(20px, 25px);
+      bottom: flux(5px, 8px);
+      border-bottom: 3px solid;
+      width: flux(30px, 55px);
+      transform-origin: 0 0;
+      transform: scaleX(0);
+      transition: .1s ease-out;
+    }
+  }
+
+  &:hover {
+    &:first-of-type {
+      a {
+        color: #e583a2;
+      }
+    }
+    &:nth-of-type(2) {
+      a {
+        color: #aaa7a7;
+      }
+    }
+    &:nth-of-type(3) {
+      a {
+        color: #4a519e;
+      }
+    }
+    &:nth-of-type(4) {
+      a {
+        color: #847979;
+      }
+    }
+
+    span {
+
+      &:after {
+        transform: scaleX(1);
+      }
+    }
   }
 }
 
@@ -189,23 +242,23 @@ p {
   width: 100%;
   transform-origin: 0 100%;
   transform: skewX(-56.7deg);
+  z-index: 1;
   background: repeating-linear-gradient(
     90deg,
     $pink-dark,
-    $pink-dark 7px,
-    $pink-light 7px,
-    $pink-light 14px
+    $pink-dark flux(5px, 8px),
+    $pink-light flux(5px, 8px),
+    $pink-light flux(10px, 16px)
   );
 }
 
 .mission__middle {
   position: relative;
   display: grid;
-  grid-template-rows: 45vw 45vw 45vw;
+  grid-template-rows: 45vw 45vw 45vw 20vw;
   grid-template-columns: 45vw 45vw;
   flex-wrap: wrap;
   border-top: $border $pink-dark;
-  overflow: hidden;
   padding-bottom: 18px;
 
   @media (min-width: 900px) {
@@ -228,7 +281,7 @@ p {
       border-bottom: 5px solid $pink-dark;
       border-left: $border $pink-dark;
       display: grid;
-      grid-template-rows: 45vw 45vw 45vw;
+      grid-template-rows: 45vw 45vw 45vw 20vw;
       grid-template-columns: 45vw 45vw;
 
       @media (min-width: 900px) {
@@ -281,11 +334,12 @@ p {
 
 .mission__text {
   position: relative;
-  padding: 5vw 10vw 0 5vw;
+  padding: 25px;
   order: 3;
   grid-column: 1 / 3;
 
   @media (min-width: 900px) {
+    padding: 5vw 10vw 0 5vw;
     flex-basis: calc(40vw - 4px);
     order: 0;
     grid-column: 2 / 4;
@@ -332,16 +386,16 @@ p {
   background: repeating-linear-gradient(
     90deg,
     $grey-light,
-    $grey-light 7px,
-    $grey-dark 7px,
-    $grey-dark 14px
+    $grey-light flux(5px, 8px),
+    $grey-dark flux(5px, 8px),
+    $grey-dark flux(10px, 16px)
   );
 }
 
 .we__middle {
   position: relative;
   display: grid;
-  grid-template-rows: 45vw 45vw 45vw 45vw;
+  grid-template-rows: 45vw 45vw 20vw 65vw 45vw;
   grid-template-columns: 45vw 45vw;
   flex-wrap: wrap;
   border-bottom: 0;
@@ -367,7 +421,7 @@ p {
       border-bottom: $border $grey-dark;
       border-right: $border $grey-dark;
       display: grid;
-      grid-template-rows: 45vw 45vw 45vw 45vw;
+      grid-template-rows: 45vw 45vw 20vw 65vw 45vw;
       grid-template-columns: 45vw 45vw;
 
       @media (min-width: 900px) {
@@ -376,15 +430,20 @@ p {
       }
 
       .border:first-of-type {
-        grid-row: 1 / 5;
-        grid-column: 1 / 2;
-        border-right: $border $grey-dark;
+        
+      
+        @media (min-width: 900px) {
+          grid-column: 1 / 2;
+          border-right: $border $grey-dark;
+          grid-row: 1 / 5;
+        }
       }
       .border:last-of-type {
-
-        grid-row: 1 / 5;
-        grid-column: 2 / 3;
-        border-right: $border $grey-dark;
+        @media (min-width: 900px) {
+          grid-row: 1 / 5;
+          grid-column: 2 / 3;
+          border-right: $border $grey-dark;
+        }
       }
     }
 
@@ -415,10 +474,15 @@ p {
 
 .we__text {
   position: relative;
-  flex-basis: calc(40vw - 4px);
-  padding: 2.5vw;
-  grid-column: 3;
-  grid-row: 3;
+  padding: 20px;
+  grid-row: 4;
+  grid-column: 1 / 3;
+  border-top: $border $grey-dark;
+  @media (min-width: 900px) {
+    padding: 2.5vw;
+    grid-column: 3;
+    grid-row: 3;
+  }
 }
 
 .we__texture {
@@ -432,9 +496,9 @@ p {
   background: repeating-linear-gradient(
     0deg,
     $grey-dark,
-    $grey-dark 5px,
-    $grey-light 5px,
-    $grey-light 10px
+    $grey-dark flux(3px, 5px),
+    $grey-light flux(3px, 5px),
+    $grey-light flux(6px, 10px)
   );
 
   @media (min-width: 900px) {
@@ -461,6 +525,12 @@ p {
   justify-content: flex-start;
   align-items: center;
   padding: 20px;
+
+  .br {
+    @media (min-width: 900px) {
+      display: none;
+    }
+  }
 }
 
 .we__person--ryan {
@@ -520,9 +590,9 @@ p {
   background: repeating-linear-gradient(
     90deg,
     $blue-light,
-    $blue-light 7px,
-    $blue-dark 7px,
-    $blue-dark 14px
+    $blue-light flux(5px, 8px),
+    $blue-dark flux(5px, 8px),
+    $blue-dark flux(10px, 16px)
   );
 }
 
@@ -550,10 +620,11 @@ p {
 .portfolio__middle {
   position: relative;
   display: grid;
-  grid-template-rows: 20vw 20vw 20vw 20vw 20vw 20vw;
+  grid-template-rows: 45vw 45vw 45vw 45vw 45vw 20vw;
   grid-template-columns: 45vw 45vw;
 
   @media (min-width: 900px) {
+    grid-template-rows: 20vw 20vw 20vw 20vw 20vw 20vw;
     grid-template-columns: 20vw 20vw 20vw;
   }
 
@@ -572,19 +643,28 @@ p {
       border-bottom: $border $blue-light;
       border-left: $border $blue-light;
       display: grid;
-      grid-template-rows: 20vw 20vw 80vw;
-      grid-template-columns: 20vw 20vw 20vw;
+      grid-template-rows: 45vw 45vw 45vw 45vw 45vw 20vw;
+      grid-template-columns: 45vw 45vw;
+
+      @media (min-width: 900px) {
+        grid-template-rows: 20vw 20vw 20vw 60vw;
+        grid-template-columns: 20vw 20vw 20vw;
+      }
 
       .border:first-of-type {
-        grid-row: 1 / 5;
+        grid-row: 1 / 7;
         grid-column: 1 / 2;
         border-right: $border $blue-light;
       }
       .border:last-of-type {
-
         grid-row: 1 / 5;
         grid-column: 2 / 3;
         border-right: $border $blue-light;
+        display: none;
+
+        @media (min-width: 900px) {
+          display: block;
+        }
       }
     }
 
@@ -610,9 +690,28 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-basis: 20vw;
-  height: 20vw;
-  border-top: $border $blue-light;
+  grid-row: 1;
+  grid-column: 2;
+  
+  @media (min-width: 900px) {
+    border-top: $border $blue-light;
+    grid-row: auto;
+    grid-column: auto;
+  }
+}
+
+.portfolio__logos {
+  display: grid;
+  grid-template-rows: 45vw 45vw 45vw 45vw 45vw 45vw;
+  grid-template-columns: 45vw 45vw;
+  grid-row: 2;
+
+  @media (min-width: 900px) {
+    grid-row: 3;
+    grid-column: 1 / 4;
+    grid-template-rows: 20vw 20vw 20vw 60vw;
+    grid-template-columns: 20vw 20vw 20vw;
+  }
 }
 
 .portfolio__logo {
@@ -620,26 +719,40 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   flex-direction: column;
   text-align: center;
-  padding: 3vw;
+  padding: 24px;
   border-top: $border $blue-light;
   
   p {
     font-size: flux(14px, 18px);
+    line-height: 1.3;
     font-weight: 300;
     color: $blue-white;
   }
 
   img {
-    width: 62%;
-    height: 100px;
+    width: 90%;
+    height: 60px;
     object-fit: contain;
+    flex-shrink: 0;
+
+    @media (min-width: 900px) {
+      width: 62%;
+      height: flux(40px, 100px);
+    }
   }
 
-  &:nth-last-child(-n+3) {
+  &:nth-last-child(-n+2) {
     border-bottom: $border $blue-light;
+  }
+  @media (min-width: 900px) {
+    &:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
+    &:nth-last-child(-n+3) {
+      border-bottom: $border $blue-light;
+    }
   }
 }
 
@@ -658,7 +771,7 @@ p {
   width: 100vw;
   color: $blue-dark;
   z-index: 1;
-  margin-top: -90vw;
+  margin-top: flux(-550px, -800px);
 
   @media (min-width: 900px) {
     margin-top: flux(-260px, -790px);
@@ -677,9 +790,9 @@ p {
   background: repeating-linear-gradient(
     90deg,
     $grey-darker,
-    $grey-darker 7px,
-    $grey-dark 7px,
-    $grey-dark 14px
+    $grey-darker flux(5px, 8px),
+    $grey-dark flux(5px, 8px),
+    $grey-dark flux(10px, 16px)
   );
 }
 
@@ -687,13 +800,14 @@ p {
   margin-top: -1px;
   position: relative;
   display: grid;
-  grid-template-rows: 10vw 10vw;
-  grid-template-columns: 45vw 45vw;
+  grid-template-rows: 25vw 25vw 25vw;
+  grid-template-columns: 50vw 50vw;
   flex-wrap: wrap;
   border-bottom: 0;
   background: $grey-dark;
 
   @media (min-width: 900px) {
+    grid-template-rows: 10vw 10vw;
     grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
   }
 
@@ -704,11 +818,15 @@ p {
     .contact__face {
       width: 100%;
       height: 100%;
-      border: $border $grey-darker;
       background: $grey-dark;
       display: flex;
       justify-content: center;
       align-items: center;
+      border-top: $border $grey-darker;
+      
+      @media (min-width: 900px) {
+        border: $border $grey-darker;
+      }
     }
 
     .contact__edge {
@@ -727,9 +845,10 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-basis: 20vw;
-  height: 20vw;
-  border-left: $border $grey-darker;
+  grid-row: 1 / 3;
+  @media (min-width: 900px) {
+    border-left: $border $grey-darker;
+  }
 }
 
 
@@ -737,10 +856,13 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  grid-row: 2;
-  grid-column: 3;
   background: $grey-dark;
-  transition: .15s ease-out transform;  
+  transition: .15s ease-out transform; 
+
+  @media (min-width: 900px) {
+    grid-row: 2;
+    grid-column: 3;
+  }
 
   .contact__edges {
     position: absolute;
@@ -793,8 +915,10 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -4px;
-  margin-bottom: -4px;
+  @media (min-width: 900px) {
+    margin-top: -4px;
+    margin-bottom: -4px;
+  }
 }
 
 .contact__icon {
@@ -803,7 +927,11 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: .15s ease-out transform; 
+  transition: .15s ease-out transform;
+  border-right: $border $grey-darker;
+  @media (min-width: 900px) {
+    border: none;
+  } 
   
   .contact__edges {
     position: absolute;
@@ -850,7 +978,9 @@ p {
   }
 
   &:first-of-type {
-    margin-right: -2px;
+    @media (min-width: 900px) {
+      margin-right: -2px;
+    }
     
     .contact__edges {
       &:before,
@@ -882,7 +1012,9 @@ p {
     }
   }
   &:last-of-type {
-    margin-left: -2px;
+    @media (min-width: 900px) {
+      margin-left: -2px;
+    }
 
     &:hover {
       transform: translate(30px, -30px);
@@ -906,6 +1038,21 @@ p {
   flex-basis: 20vw;
   color: $grey-darker;
   grid-row: 1 / 3;
+  border-right: $border $grey-darker;
+
+  @media (min-width: 900px) {
+    border-right: none;
+  }
+}
+
+@keyframes flip {
+  0% {
+    transform: scaleX(1) !important;
+  } 50% {
+    transform: scaleX(0) !important;
+  } 100% {
+    transform: scaleX(1) !important;
+  }
 }
 
 .is-menu-collapsed {
@@ -921,7 +1068,8 @@ p {
       transform: translateY(-2px);
 
       svg rect {
-        transform: scaleX(-1);
+        transform: none;
+        animation: flip .2s ease-out !important;
       }
     }
   }
