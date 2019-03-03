@@ -13,6 +13,7 @@ const Scroller = {
     this.portfolio = document.querySelector('.portfolio');
     document.querySelector('.js-menu-icon').addEventListener('click', () => {
       document.scrollingElement.scrollTop = 0;
+      //.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
     })
     window.addEventListener('wheel', () => this.wheelHandler());
     window.addEventListener('scroll', () => this.wheelHandler());

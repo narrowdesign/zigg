@@ -29,10 +29,10 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390.89 103.68"><title>logo</title><path d="M6.29,52.09,25.06,11.66H2.67V.92H45.6L22.8,52.09Z" style="fill:#000222"/><path d="M39.31,52.09,20.54,92.52H42.93V103H0L22.8,52.09Z" style="fill:#000222"/><path d="M99.53,25a26.08,26.08,0,0,1,2.14-10.88,22.91,22.91,0,0,1,5.73-7.87,24.28,24.28,0,0,1,7.8-4.58,26,26,0,0,1,25.54,4.58,23.93,23.93,0,0,1,5.58,7.87A25.93,25.93,0,0,1,148.47,25v5.15h-14.6V25q0-5.29-2.93-7.8a10.85,10.85,0,0,0-13.88,0q-2.94,2.5-2.94,7.8V78.78q0,5.3,2.94,7.8a10.88,10.88,0,0,0,13.88,0q2.92-2.51,2.93-7.8V57.6H122.28l5.23-10.88h21V78.78a25.7,25.7,0,0,1-2.15,11,22.69,22.69,0,0,1-5.58,7.58,24.28,24.28,0,0,1-7.94,4.72,25.3,25.3,0,0,1-17.6,0,22.79,22.79,0,0,1-7.8-4.72,21.77,21.77,0,0,1-5.73-7.58,25.85,25.85,0,0,1-2.14-11Z" style="fill:#000222"/><path d="M159.49,25a26.08,26.08,0,0,1,2.15-10.88,23,23,0,0,1,5.72-7.87,24.28,24.28,0,0,1,7.8-4.58,25.48,25.48,0,0,1,17.61,0,26.07,26.07,0,0,1,7.94,4.58,23.93,23.93,0,0,1,5.58,7.87A26.08,26.08,0,0,1,208.44,25v5.15h-14.6V25q0-5.29-2.93-7.8a10.86,10.86,0,0,0-13.89,0q-2.93,2.5-2.93,7.8V78.78q0,5.3,2.93,7.8a10.9,10.9,0,0,0,13.89,0q2.93-2.51,2.93-7.8V57.6H182.25l5.23-10.88h21V78.78a25.85,25.85,0,0,1-2.15,11,22.69,22.69,0,0,1-5.58,7.58,24.39,24.39,0,0,1-7.94,4.72,25.32,25.32,0,0,1-17.61,0,22.79,22.79,0,0,1-7.8-4.72,21.86,21.86,0,0,1-5.72-7.58,25.85,25.85,0,0,1-2.15-11Z" style="fill:#000222"/><polygon points="91.05 11.42 91.05 0.92 79.86 0.92 65.27 0.92 54.08 0.92 54.08 11.42 65.27 11.42 65.27 92.32 54.08 92.32 54.08 102.82 65.27 102.82 79.86 102.82 91.05 102.82 91.05 92.32 79.86 92.32 79.86 11.42 91.05 11.42" style="fill:#000222"/></svg>
     </div>
     <div class="menu">
-      <div class="menu__item"><span class="pink-text">01</span>Mission</div>
-      <div class="menu__item"><span class="grey-light-text">02</span>We Are</div>
-      <div class="menu__item"><span class="blue-text">03</span>Portfolio</div>
-      <div class="menu__item"><span class="grey-dark-text">04</span>Contact Us</div>
+      <div class="menu__item"><a href="#mission"><span class="pink-text">01</span>Mission</a></div>
+      <div class="menu__item"><a href="#we"><span class="grey-light-text">02</span>We Are</a></div>
+      <div class="menu__item"><a href="#portfolio"><span class="blue-text">03</span>Portfolio</a></div>
+      <div class="menu__item"><a href="#contact"><span class="grey-dark-text">04</span>Contact Us</a></div>
     </div>
     <div class="menu__collapsed js-menu-icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="33" height="21" viewBox="0 0 33 21">
@@ -45,7 +45,7 @@
     </div>
     <section class="mission">
       <div class="mission__top js-mission-menu"></div>
-      <div class="mission__middle">
+      <div class="mission__middle" id="mission">
         <div class="mission__shapes">
           <div class="mission__shape--middle">
             <div class="border"></div>
@@ -54,9 +54,7 @@
             <div class="js-bottom-edge"></div>
           </div>
         </div>
-        <h1 class="mission__title">
-          Our<br>Mission
-        </h1>
+        <h1 class="mission__title">Our<br>Mission</h1>
         <div class="mission__text">
           <p>
             Accelerating the combination of real property and technology. Improving the world’s quality of life, work, and communities.
@@ -68,7 +66,7 @@
 
     <section class="we">
       <div class="we__top js-we-top"></div>
-      <div class="we__middle">
+      <div class="we__middle" id="we">
         <div class="we__shapes">
           <div class="we__shape--middle">
             <div class="border"></div>
@@ -101,9 +99,9 @@
       </div>
     </section>
 
-    <section class="portfolio">=
+    <section class="portfolio">
       <div class="portfolio__top js-portfolio-top"></div>
-      <div class="portfolio__middle">
+      <div class="portfolio__middle" id="portfolio">
         <div class="portfolio__shapes">
           <div class="portfolio__shape--middle">
             <div class="border"></div>
@@ -122,15 +120,15 @@
         </h1>
         <div></div>
         <div class="portfolio__logo">
-          <img src="images/logos/great_jones.svg" alt="cherre logo">
+          <img src="images/logos/great_jones.svg" alt="great jones logo">
           <p>Short sentence about each portfolio company.</p>
         </div>
         <div class="portfolio__logo">
-          <img src="images/logos/juniper_square.png" alt="procore logo">
+          <img src="images/logos/juniper_square.png" alt="junpier square logo">
           <p>Short sentence about each portfolio company.</p>
         </div>
         <div class="portfolio__logo">
-          <img src="images/logos/procore.svg" alt="juniper square logo">
+          <img src="images/logos/procore.svg" alt="procore logo">
           <p>Short sentence about each portfolio company.</p>
         </div>  
         <div class="portfolio__logo">
@@ -142,7 +140,7 @@
           <p>Short sentence about each portfolio company.</p>
         </div>
         <div class="portfolio__logo">
-          <img src="images/logos/cherre.svg" alt="great jones logo">
+          <img src="images/logos/cherre.svg" alt="cherre logo">
           <p>Short sentence about each portfolio company.</p>
         </div>
       </div>
@@ -150,7 +148,7 @@
 
     <section class="contact">
       <div class="contact__top"></div>
-      <div class="contact__middle">
+      <div class="contact__middle" id="contact">
         <h5 class="contact__number">04</h5>
         <h1 class="contact__title">
           Get in<br>Touch

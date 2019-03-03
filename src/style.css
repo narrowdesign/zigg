@@ -105,13 +105,23 @@ p {
 }
 
 .menu__item {
-  display: flex;
+  display: none;
   justify-content: flex-start;
   width: 100%;
   margin-bottom: flux(12px, 24px);
   font-weight: 600;
   letter-spacing: .12rem;
   text-transform: uppercase;
+  cursor: pointer;
+
+  @media (min-width: 900px) {
+    display: flex;
+  }
+
+  a {
+    color: $blue-dark;
+    text-decoration: none;
+  }
   span {
     font-family: 'Source Sans Pro';
     font-weight: 500;
@@ -121,7 +131,7 @@ p {
 
 .menu__collapsed {
   position: fixed;
-  left: calc(50% - 40px);
+  left: calc(50% - 37px);
   top: flux(25px, 72px);
   color: $pink-light;
   background: $pink-dark;
@@ -164,7 +174,7 @@ p {
   margin-left: 10vw;
   color: white;
   z-index: 4;
-
+  pointer-events: none;
 
   @media (min-width: 900px) {
     width: 60vw;
@@ -218,13 +228,23 @@ p {
       border-bottom: 5px solid $pink-dark;
       border-left: $border $pink-dark;
       display: grid;
-      grid-template-rows: 20vw 20vw 20vw;
-      grid-template-columns: 20vw 20vw 20vw;
+      grid-template-rows: 45vw 45vw 45vw;
+      grid-template-columns: 45vw 45vw;
+
+      @media (min-width: 900px) {
+        grid-template-columns: 20vw 40vw;
+        grid-template-rows: 20vw 20vw 20vw;
+      }
 
       .border {
         grid-row: 1 / 4;
         grid-column: 1 / 2;
         border-right: $border $pink-dark;
+        display: none;
+
+        @media (min-width: 900px) {
+          display: block;
+        }
       }
     }
 
@@ -252,6 +272,11 @@ p {
   align-items: center;
   height: 100%;
   border-bottom: $border $pink-dark;
+  border-right: $border $pink-dark;
+
+  @media (min-width: 900px) {
+    border-right: none; 
+  }
 }
 
 .mission__text {
@@ -286,7 +311,7 @@ p {
   position: relative;
   width: 90vw;
   color: $blue-dark;
-  margin-top: -90vw;
+  margin-top: -70vw;
   z-index: 3;
 
   @media (min-width: 900px) {
@@ -316,16 +341,16 @@ p {
 .we__middle {
   position: relative;
   display: grid;
-  grid-template-rows: 20vw 20vw 20vw 20vw;
+  grid-template-rows: 45vw 45vw 45vw 45vw;
   grid-template-columns: 45vw 45vw;
   flex-wrap: wrap;
   border-bottom: 0;
   padding-bottom: 38px;
 
   @media (min-width: 900px) {
+    grid-template-rows: 20vw 20vw 20vw 20vw;
     grid-template-columns: 20vw 20vw 20vw;
   }
-
 
   .we__shapes {
     content: '';
@@ -342,8 +367,13 @@ p {
       border-bottom: $border $grey-dark;
       border-right: $border $grey-dark;
       display: grid;
-      grid-template-rows: 20vw 20vw 20vw 20vw;
-      grid-template-columns: 20vw 20vw 20vw;
+      grid-template-rows: 45vw 45vw 45vw 45vw;
+      grid-template-columns: 45vw 45vw;
+
+      @media (min-width: 900px) {
+        grid-template-rows: 20vw 20vw 20vw 20vw;
+        grid-template-columns: 20vw 20vw 20vw;
+      }
 
       .border:first-of-type {
         grid-row: 1 / 5;
@@ -380,8 +410,6 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-basis: 20vw;
-  height: 20vw;
   border-bottom: $border $grey-dark;
 }
 
@@ -394,6 +422,7 @@ p {
 }
 
 .we__texture {
+  display: none;
   grid-column: 3;
   grid-row: 1;
   z-index: 1;
@@ -407,6 +436,10 @@ p {
     $grey-light 5px,
     $grey-light 10px
   );
+
+  @media (min-width: 900px) {
+    display: block;
+  }
 }
 
 .we__number {
@@ -427,18 +460,38 @@ p {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  padding: 20px;
+}
+
+.we__person--ryan {
+  grid-row: 2 / 4;
+  grid-column: 2;
+  @media (min-width: 900px) {
+    grid-row: auto;
+    grid-column: auto;
+  }
 }
 
 .we__person--dave {
-
+  grid-row: 2 / 4;
+  grid-column: 1;
+  @media (min-width: 900px) {
+    grid-row: auto;
+    grid-column: auto;
+  }
 }
 
 .we__photo {
   position: relative;
-  width: 15vw;
-  height: 15vw;
+  width: 100%;
+  height: 40vw;
   background: $blue-dark;
   margin-top: 2.5vw;
+
+  @media (min-width: 900px) {
+    width: 15vw;
+    height: 15vw;
+  }
 }
 
 .portfolio {
@@ -447,7 +500,7 @@ p {
   margin-left: 10vw;
   color: white;
   z-index: 2;
-  margin-top: -90vw;
+  margin-top: -80vw;
 
   @media (min-width: 900px) {
     margin-top: flux(-420px, -1200px);
@@ -474,6 +527,7 @@ p {
 }
 
 .portfolio__texture {
+  display: none;
   grid-column: 1;
   grid-row: 1;
   z-index: 1;
@@ -487,6 +541,10 @@ p {
     $blue-dark 5px,
     $blue-dark 10px
   );
+
+  @media (min-width: 900px) {
+    display: block;
+  }
 }
 
 .portfolio__middle {
@@ -861,7 +919,15 @@ p {
 
     &:hover {
       transform: translateY(-2px);
+
+      svg rect {
+        transform: scaleX(-1);
+      }
     }
+  }
+
+  .mission {
+    pointer-events: auto;
   }
 
   &.is-menu-we {
