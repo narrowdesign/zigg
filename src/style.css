@@ -480,6 +480,10 @@ p {
   justify-content: center;
   align-items: center;
   border-bottom: $border $grey-dark;
+  border-left: $border $grey-dark;
+  @media (min-width: 900px) {
+    border-left: 0;
+  }
 }
 
 .we__text {
@@ -536,6 +540,11 @@ p {
   justify-content: flex-start;
   align-items: center;
   padding: 20px;
+  
+  a {
+    color: $blue-dark;
+    text-decoration: none;
+  }
 
   .br {
     @media (min-width: 900px) {
@@ -547,7 +556,9 @@ p {
 .we__person--ryan {
   grid-row: 2 / 4;
   grid-column: 2;
+  border-left: $border $grey-dark;
   @media (min-width: 900px) {
+    border-left: none;
     grid-row: auto;
     grid-column: auto;
   }
@@ -565,7 +576,7 @@ p {
 .we__photo {
   position: relative;
   width: 100%;
-  height: 80vw;
+  height: 65vw;
   margin-top: 2.5vw;
   transition: .15s ease-out transform;
   
@@ -573,8 +584,8 @@ p {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 60%;
   }
-
 
   @media (min-width: 900px) {
     width: 15vw;
@@ -683,7 +694,7 @@ p {
 .portfolio__middle {
   position: relative;
   display: grid;
-  grid-template-rows: 45vw 45vw 45vw 45vw 45vw 20vw;
+  grid-template-rows: 65vw 65vw 65vw 65vw 65vw 20vw;
   grid-template-columns: 45vw 45vw;
 
   @media (min-width: 900px) {
@@ -706,7 +717,7 @@ p {
       border-bottom: $border $blue-light;
       border-left: $border $blue-light;
       display: grid;
-      grid-template-rows: 45vw 45vw 45vw 45vw 45vw 20vw;
+      grid-template-rows: 65vw 65vw 65vw 65vw 65vw 20vw;
       grid-template-columns: 45vw 45vw;
 
       @media (min-width: 900px) {
@@ -765,7 +776,7 @@ p {
 
 .portfolio__logos {
   display: grid;
-  grid-template-rows: 45vw 45vw 45vw 45vw 45vw 45vw;
+  grid-template-rows: 65vw 65vw 65vw 65vw 65vw 65vw;
   grid-template-columns: 45vw 45vw;
   grid-row: 2;
 
