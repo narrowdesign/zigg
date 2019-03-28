@@ -26,6 +26,10 @@ $angle-bottom-height: calc(2.5vw + 10px);
   color: #4a519e;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -230,6 +234,7 @@ p {
   pointer-events: none;
   transform: translateX(100%);
   animation: right-section-slide 1s ease-out forwards;
+  padding-bottom: 100px;
 
   @media (min-width: 900px) {
     width: 60vw;
@@ -377,10 +382,11 @@ p {
   z-index: 3;
   transform: translateX(-100%);
   animation: left-section-slide 1s ease-out forwards;
+  padding-bottom: 100px;
 
   @media (min-width: 900px) {
     width: 60vw;
-    margin-top: flux(-510px, -1152px);
+    margin-top: flux(-610px, -1252px);
   }
 }
 
@@ -645,9 +651,10 @@ p {
   color: white;
   z-index: 2;
   margin-top: -80vw;
+  padding-bottom: 100px;
 
   @media (min-width: 900px) {
-    margin-top: flux(-420px, -1200px);
+    margin-top: flux(-520px, -1300px);
     width: 60vw;
     margin-left: 40vw;
   }
@@ -840,6 +847,7 @@ p {
   color: $blue-dark;
   z-index: 1;
   margin-top: flux(-550px, -800px);
+  overflow: hidden;
 
   @media (min-width: 900px) {
     margin-top: flux(-260px, -790px);
