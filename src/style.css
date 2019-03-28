@@ -405,7 +405,7 @@ p {
 .we__middle {
   position: relative;
   display: grid;
-  grid-template-rows: 45vw 80vw 20vw 65vw 45vw;
+  grid-template-rows: 45vw 80vw 20vw 65vw 65vw;
   grid-template-columns: 45vw 45vw;
   flex-wrap: wrap;
   border-bottom: 0;
@@ -431,7 +431,7 @@ p {
       border-bottom: $border $grey-dark;
       border-right: $border $grey-dark;
       display: grid;
-      grid-template-rows: 45vw 80vw 20vw 65vw 45vw;
+      grid-template-rows: 45vw 80vw 20vw 65vw 65vw;
       grid-template-columns: 45vw 45vw;
 
       @media (min-width: 900px) {
@@ -694,13 +694,6 @@ p {
 .portfolio__middle {
   position: relative;
   display: grid;
-  grid-template-rows: 65vw 65vw 65vw 65vw 65vw 20vw;
-  grid-template-columns: 45vw 45vw;
-
-  @media (min-width: 900px) {
-    grid-template-rows: 20vw 20vw 20vw 20vw 20vw 20vw;
-    grid-template-columns: 20vw 20vw 20vw;
-  }
 
   .portfolio__shapes {
     content: '';
@@ -716,22 +709,14 @@ p {
       background: $blue-dark;
       border-bottom: $border $blue-light;
       border-left: $border $blue-light;
-      display: grid;
-      grid-template-rows: 65vw 65vw 65vw 65vw 65vw 20vw;
-      grid-template-columns: 45vw 45vw;
-
-      @media (min-width: 900px) {
-        grid-template-rows: 20vw 20vw 20vw 60vw;
-        grid-template-columns: 20vw 20vw 20vw;
-      }
 
       .border:first-of-type {
-        grid-row: 1 / 7;
+        grid-row: 1 / -1;
         grid-column: 1 / 2;
         border-right: $border $blue-light;
       }
       .border:last-of-type {
-        grid-row: 1 / 5;
+        grid-row: 1 / -1;
         grid-column: 2 / 3;
         border-right: $border $blue-light;
         display: none;
@@ -775,15 +760,23 @@ p {
 }
 
 .portfolio__logos {
-  display: grid;
-  grid-template-rows: 65vw 65vw 65vw 65vw 65vw 65vw;
-  grid-template-columns: 45vw 45vw;
   grid-row: 2;
 
   @media (min-width: 900px) {
     grid-row: 3;
     grid-column: 1 / 4;
-    grid-template-rows: 20vw 20vw 20vw 60vw;
+  }
+}
+
+.portfolio__grid {
+  display: grid;
+  grid-template-rows: 65vw 65vw 65vw 65vw 65vw 65vw 65vw;
+  grid-template-columns: 45vw 45vw;
+
+  @media (min-width: 900px) {
+    grid-row: 3;
+    grid-column: 1 / 4;
+    grid-template-rows: 20vw 20vw 20vw 20vw 20vw 20vw 20vw;
     grid-template-columns: 20vw 20vw 20vw;
   }
 }
@@ -797,6 +790,7 @@ p {
   text-align: center;
   padding: 24px;
   border-top: $border $blue-light;
+  margin-top: flux(-3px, -5px);
   
   p {
     font-size: flux(14px, 18px);
