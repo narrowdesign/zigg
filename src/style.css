@@ -252,14 +252,12 @@ p {
   transform: skewX(-56.7deg);
   z-index: 1;
 
-  svg {
-    line {
-      stroke-width: 8px;
-      stroke: $pink-light;
-      transition-duration: 1s;
-      opacity: 0;
-    }
-  }
+  background: repeating-linear-gradient(90deg,
+    $pink-dark,
+    $pink-dark flux(5px, 9px),
+    $pink-light flux(5px, 9px),
+    $pink-light flux(10px, 16px)
+  )
 }
 
 .mission__middle {
@@ -777,13 +775,16 @@ p {
 
 .portfolio__grid {
   display: grid;
-  grid-template-rows: 65vw 65vw 65vw 65vw 65vw 65vw 65vw;
+  /* MOVED INTO HTML FOR CLIENT TO CHANGE grid-template-rows: repeat(7, 65vw); NOTE add one to this when the logos overlap */
   grid-template-columns: 45vw 45vw;
+}
 
-  @media (min-width: 900px) {
+
+@media (min-width: 900px) {
+  .portfolio__grid {
+    /* MOVED INTO HTML FOR CLIENT TO CHANGE grid-template-rows: repeat(7, 20vw); NOTE add one to this when the logos overlap */
     grid-row: 3;
     grid-column: 1 / 4;
-    grid-template-rows: 20vw 20vw 20vw 20vw 20vw 20vw 20vw;
     grid-template-columns: 20vw 20vw 20vw;
   }
 }
@@ -799,6 +800,7 @@ p {
   border-top: $border $blue-light;
   margin-top: flux(-3px, -5px);
   text-decoration: none;
+  border-bottom: $border $blue-light;
   
   p {
     font-size: flux(13px, 18px);
@@ -819,18 +821,6 @@ p {
     @media (min-width: 900px) {
       width: 62%;
       height: flux(40px, 100px);
-    }
-  }
-
-  &:nth-last-child(-n+2) {
-    border-bottom: $border $blue-light;
-  }
-  @media (min-width: 900px) {
-    &:nth-last-child(-n+2) {
-      border-bottom: none;
-    }
-    &:nth-last-child(-n+3) {
-      border-bottom: $border $blue-light;
     }
   }
 
