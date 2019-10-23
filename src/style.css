@@ -353,6 +353,7 @@ p {
 
   a {
     color: white;
+    pointer-events: auto;
   }
 
   @media (min-width: 900px) {
@@ -875,8 +876,8 @@ p {
 #letter-page .contact {
   margin-top: 0;
   .contact__top {
+    background: $grey-darker;
     height: 50px;
-    background: $grey-light;
     transform: none;
   }
 }
@@ -1163,12 +1164,8 @@ p {
 .letter {
   position: relative;
   margin-top: flux(200px, 300px);
-  background: #f6f6f6;
-  padding-bottom: 120px;
-  padding: 4vw 10vw;
 
   @media (min-width: 900px) {
-    padding: 70px  4vw;
     display: grid;
     grid-template-columns: 40vw 60vw;
     grid-template-rows: auto;
@@ -1177,22 +1174,49 @@ p {
 }
 
 .letter__left {
-  padding: 4vw 0;
+  width: 100%;
+  padding: 40px 4vw;
+  background: $pink-light;
   @media (min-width: 900px) {
-    grid-column: 1;
-    padding: 0;
+    padding: 4vw 4vw;
+    border-top: $border $pink-dark;
+    border-right: $border $pink-dark;
+    width: 25vw;
+    height: 100%;
+    position: fixed;
   }
   h1 {
-    text-align: left;
-    color: $pink-light;
+    position: relative;
+    color: white;
+    z-index: 3;
+  } 
+
+  .letter__lines {
     @media (min-width: 900px) {
-      position: fixed;
+      position: absolute;
+      left: 0;
+      top: 33.5vw;
+      width: 100%;
+      height: 100%;
+      transform-origin: 100% 100%;
+      transform: skewY(34.3deg);
+      background: repeating-linear-gradient(0deg,
+        $pink-dark,
+        $pink-dark flux(5px, 9px),
+        $pink-light flux(5px, 9px),
+        $pink-light flux(10px, 16px)
+      )
     }
   }
 }
 
 .letter__middle {
+  padding: 10vw;
   grid-column: 2;
+
+  @media (min-width: 900px) {
+    padding: 4vw 4vw;
+  }
 
   h2 {
     margin-top: 0;

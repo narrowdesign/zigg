@@ -15,6 +15,8 @@ const Scroller = {
     this.weTop = this.we.querySelector('.we__top')
     this.portfolioTop = this.portfolio.querySelector('.portfolio__top')
     this.body = document.querySelector('body');
+    this.body.scrollLeft = 0;
+    document.scrollingElement.scrollLeft = 0;
     document.querySelector('.js-menu-icon').addEventListener('click', () => {
       document.scrollingElement.scrollTop = 0;
       //.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});

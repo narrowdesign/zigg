@@ -1,9 +1,12 @@
 import './style.css';
-import Geometry from './geometry';
 import Scroller from './scroller';
 
 function App() {
-  Geometry();
+  setTimeout(() => {
+    document.body.scrollLeft = 0;
+    document.scrollingElement.scrollLeft = 0;
+  },10)
+
   Scroller();
 }
 
