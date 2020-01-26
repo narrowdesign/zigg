@@ -419,7 +419,7 @@ p {
 .we__middle {
   position: relative;
   display: grid;
-  grid-template-rows: 45vw 80vw 20vw 65vw 65vw 65vw;
+  grid-template-rows: 45vw 80vw 80vw 65vw 65vw 65vw;
   grid-template-columns: 45vw 45vw;
   flex-wrap: wrap;
   border-bottom: 0;
@@ -568,9 +568,10 @@ p {
 }
 
 .we__person--ryan {
-  grid-row: 2 / 4;
+  grid-row: 2 / 3;
   grid-column: 2;
   border-left: $border $grey-dark;
+  border-bottom: $border $grey-dark;
   @media (min-width: 900px) {
     border-left: none;
     grid-row: auto;
@@ -579,8 +580,9 @@ p {
 }
 
 .we__person--dave {
-  grid-row: 2 / 4;
+  grid-row: 2 / 3;
   grid-column: 1;
+  border-bottom: $border $grey-dark;
   @media (min-width: 900px) {
     grid-row: auto;
     grid-column: auto;
@@ -599,7 +601,9 @@ p {
 .we__person--verna {
   grid-row: 3 / 4;
   grid-column: 2;
+  border-left: $border $grey-dark;
   @media (min-width: 900px) {
+    border-left: none;
     grid-row: 3;
     grid-column: auto;
   }
